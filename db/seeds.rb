@@ -1,35 +1,38 @@
 # coding: utf-8
 
 [
-  { pt: 'Arte', en: 'Art' },
-  { pt: 'Artes plásticas', en: 'Visual Arts' },
-  { pt: 'Circo', en: 'Circus' },
-  { pt: 'Comunidade', en: 'Community' },
-  { pt: 'Feito à mão', en: 'Handmade' },
-  { pt: 'Humor', en: 'Humor' },
-  { pt: 'Quadrinhos', en: 'Comicbooks' },
-  { pt: 'Dança', en: 'Dance' },
-  { pt: 'Design', en: 'Design' },
-  { pt: 'Eventos', en: 'Events' },
-  { pt: 'Moda', en: 'Fashion' },
-  { pt: 'Comida', en: 'Food' },
-  { pt: 'Cinema & Vídeo', en: 'Film & Video' },
-  { pt: 'Jogos', en: 'Games' },
-  { pt: 'Jornalismo', en: 'Journalism' },
-  { pt: 'Música', en: 'Music' },
-  { pt: 'Fotografia', en: 'Photography' },
-  { pt: 'Tecnologia', en: 'Technology' },
-  { pt: 'Teatro', en: 'Theatre' },
-  { pt: 'Esporte', en: 'Sport' },
-  { pt: 'Graffiti', en: 'Graffiti' },
-  { pt: 'Web', en: 'Web' },
-  { pt: 'Carnaval', en: 'Carnival' },
-  { pt: 'Arquitetura & Urbanismo', en: 'Architecture & Urbanism' },
-  { pt: 'Literatura', en: 'Literature' }
+  { pt: 'Arte', en: 'Art', hk: 'Art'  },
+  { pt: 'Artes plásticas', en: 'Visual Arts', hk: 'Visual Arts'  },
+  { pt: 'Circo', en: 'Circus', hk: 'Circus' },
+  { pt: 'Comunidade', en: 'Community', hk: 'Community' },
+  { pt: 'Feito à mão', en: 'Handmade', hk: 'Handmade' },
+  { pt: 'Humor', en: 'Humor', hk: 'Humor' },
+  { pt: 'Quadrinhos', en: 'Comicbooks', hk: 'Comicbooks' },
+  { pt: 'Dança', en: 'Dance', hk: 'Dance'  },
+  { pt: 'Design', en: 'Design', hk: 'Design'  },
+  { pt: 'Eventos', en: 'Events', hk: 'Events' },
+  { pt: 'Moda', en: 'Fashion', hk: 'Fashion'  },
+  { pt: 'Comida', en: 'Food', hk: 'Food' },
+  { pt: 'Cinema & Vídeo', en: 'Film & Video', hk: 'Film & Video'  },
+  { pt: 'Jogos', en: 'Games', hk: 'Games' },
+  { pt: 'Jornalismo', en: 'Journalism', hk: 'Journalism'  },
+  { pt: 'Música', en: 'Music', hk: 'Music' },
+  { pt: 'Fotografia', en: 'Photography', hk: 'Photography' },
+  { pt: 'Tecnologia', en: 'Technology', hk: 'Technology' },
+  { pt: 'Teatro', en: 'Theatre', hk: 'Theatre' },
+  { pt: 'Esporte', en: 'Sport', hk: 'Sport' },
+  { pt: 'Graffiti', en: 'Graffiti', hk: 'Graffiti'  },
+  { pt: 'Web', en: 'Web', hk: 'Web' },
+  { pt: 'Carnaval', en: 'Carnival', hk: 'Carnival'  },
+  { pt: 'Arquitetura & Urbanismo', en: 'Architecture & Urbanism', hk: 'Architecture & Urbanism'  },
+  { pt: 'Literatura', en: 'Literature', hk: 'Literature'  }
 ].each do |name|
    category = Category.find_or_initialize_by_name_pt name[:pt]
    category.update_attributes({
      name_en: name[:en]
+   })
+   category.update_attributes({
+     name_hk: name[:hk]
    })
  end
 
@@ -42,21 +45,21 @@
 end
 
 {
-  company_name: 'Catarse',
-  host: 'catarse.me',
-  base_url: "http://catarse.me",
-  blog_url: "http://blog.catarse.me",
-  email_contact: 'contato@catarse.me',
-  email_payments: 'financeiro@catarse.me',
-  email_projects: 'projetos@catarse.me',
-  email_system: 'system@catarse.me',
-  email_no_reply: 'no-reply@catarse.me',
-  facebook_url: "http://facebook.com/catarse.me",
-  facebook_app_id: '173747042661491',
-  twitter_username: "Catarse_",
-  bitly_api_login: "diogob",
-  bitly_api_key: "R_76ee3ab860d76d0d1c1c8e9cc5485ca1",
-  mailchimp_url: "http://catarse.us5.list-manage.com/subscribe/post?u=ebfcd0d16dbb0001a0bea3639&amp;id=149c39709e",
+  company_name: 'Pullwater',
+  host: 'pullwater.com',
+  base_url: "http://pullwater.com",
+  blog_url: " http://pullwater.tumblr.com/",
+  email_contact: 'contato@pullwater.com',
+  email_payments: 'financeiro@pullwater.com',
+  email_projects: 'projetos@pullwater.com',
+  email_system: 'system@pullwater.com',
+  email_no_reply: 'no-reply@pullwater.com',
+  facebook_url: "http://facebook.com/pullwater",
+  facebook_app_id: '427111090709356',
+  twitter_username: "pullwaterhk",
+  bitly_api_login: "pullwater",
+  bitly_api_key: "R_60f3630aebaf46c793c00e3048255724",
+  mailchimp_url: "http://pullwater.us6.list-manage.com/subscribe?u=394bd62853&id=60dfd14046&id=60dfd14046",
   catarse_fee: '0.13'
 }.each do |name, value|
   Configuration.find_or_create_by_name name, value: value
