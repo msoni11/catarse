@@ -1,7 +1,7 @@
 - if request.method == "GET"
   #locales class=("notify" if flash[:locale])
     ul
-      - I18n.available_locales.map(&:to_s).sort.each do |locale|
+      - I18n.available_locales.map(&:to_s).sort{ |a,b| b.to_s <=> a.to_s }.each do |locale|
         li
           = link_to params.merge(locale: locale) do
             = image_tag "locales/#{locale}.png"
