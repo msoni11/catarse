@@ -48,7 +48,7 @@ end
   company_name: 'Pullwater',
   host: 'pullwater.com',
   base_url: "http://pullwater.com",
-  blog_url: " http://pullwater.tumblr.com/",
+  blog_url: "http://pullwater.tumblr.com/",
   email_contact: 'contato@pullwater.com',
   email_payments: 'financeiro@pullwater.com',
   email_projects: 'projetos@pullwater.com',
