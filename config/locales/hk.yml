@@ -398,6 +398,9 @@ hk:
         text_title_html: "You are now part of the group that does everything to make %{link} happen."
         title: "Thank you"
       checkout:
+        paypal_description: "Back project %{project_name} with %{value}"
+        paypal_cancel: "Your PayPal payment was canceled. Please try again"
+        paypal_error: "Oops. There was an error while sending your payment to PayPal. Please try again"
         no_credits: "You don't have enough credits to back this project."
         success: "Your back was successfully made. Thanks a lot!"
       new:
@@ -431,6 +434,9 @@ hk:
         choose_boleto: "Payments from Brazil"
         you_are_about_html: "You are about to become part of the group that does everything to make %{link} happen."
         pay_with: "Pay With"
+      review:
+        international:
+          button: "Redirect to paypal"
     create:
       success: "Your project was successfully created! We'll soon contact you. Thanks a lot!"
     form:
@@ -606,7 +612,7 @@ hk:
     failure:
       error: "There was an error while loggin in. Please try again."
   site:
-    title: "The first crowdfunding platform from Brazil"
+    title: "撲水有千萬個理由"
   static:
     guidelines_backers:
       title: "I want to back a project!"

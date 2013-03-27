@@ -192,9 +192,11 @@ hk:
   time:
     am: am
     formats:
+      simple: "%m/%d/%Y, %H:%M h"
       default: ! '%a, %d %b %Y %H:%M:%S %z'
       long: ! '%B %d, %Y %H:%M'
       short: ! '%d %b %H:%M'
+      updates: "%d %b %Y"
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

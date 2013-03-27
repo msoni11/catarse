@@ -21,7 +21,7 @@ gem 'schema_plus'
 gem 'schema_associations'
 
 # Payment engine using Paypal
-gem 'catarse_paypal_express', git: 'git://github.com/devton/catarse_paypal_express.git',  ref: '020e5851f8c2b08c9e4c1f4aab3627414644876b'
+gem 'catarse_paypal_express', git: 'git://github.com/msoni11/catarse_paypal_express.git',  ref: '020e5851f8c2b08c9e4c1f4aab3627414644876b'
 
 # Payment engine using Moip
 gem 'catarse_moip',           git: 'git://github.com/devton/catarse_moip.git',            ref: 'd71157a0365611048a36180846a3c0c84768b916'
@@ -54,7 +54,7 @@ gem 'cancan', git: 'git://github.com/ryanb/cancan.git', branch: '2.0', ref: 'f1c
 gem "airbrake"
 
 # Email marketing using mailchimp
-gem 'catarse_mailchimp', git: 'git://github.com/devton/catarse_mailchimp'
+gem 'catarse_mailchimp', git: 'git://github.com/catarse/catarse_mailchimp'
 
 # HTML manipulation and formatting
 gem 'formtastic',   '~> 2.1.1'

@@ -111,22 +111,21 @@
                   - if can? :update, @project, :about
                     = form.input :about, required: false
                     .tips
-                      h3 Dicas de Formatação
+                      h3 Formatting Tips
                       = image_tag "catarse/icon_media.png"
-                      p Se você colar a url de uma imagem ou de um vídeo do vimeo ou do youtube, eles irão aparecer na descrição da ideia. experimente!
+                      p If you paste the url of an image or a video from youtube or vimeo, they will appear in the description of the idea. try!
                       = image_tag "catarse/icon_url.png"
-                      p Ao colar uma url qualquer, ela virará um link. Por exemplo, http://meulink.com virará <a href="http://www.meulink.com.br">http://www.meulink.com.br</a>
+                      p When you paste a url any, it will become a link. For example, will turn <a href="http://www.meulink.com.br">http://www.meulink.com.br</a>
                       = image_tag "catarse/icon_linktext.png"
-                      p Se você quiser colocar um texto no link, basta usar o seguinte formato: "texto que você quer":http://sua.url. Por exemplo, 'meu link':http://meulink.com virará <a href="http://www.meulink.com.br">meu link</a>.
+                      p If you want to put a link in the text, please use the following format: "text you want": http://sua.url. For example, 'my link': http://meulink.com will turn <a href="http://www.meulink.com.br">my link</a>.
                       = image_tag "catarse/icon_bold.png"
                       p
-                        |Você pode usar negrito adicionando dois asteriscos (**) antes e depois do texto que você quer formatar. Por exemplo, **meu texto em negrito** irá aparecer como
-                        strong meu texto em negrito
+                        |You can use bold by adding two asterisks (**) before and after the text you want to format. For example, ** my text in bold** bold text will appear as strong my text in bold.
                         |.
                       = image_tag "catarse/icon_italic.png"
                       p
-                        |Você pode usar itálico adicionando um underline (_) antes e depois do texto que você quer formatar. Por exemplo, _meu texto em itálico_ irá aparecer como
-                        i meu texto em itálico
+                        |You can use italic adding an underscore (_) before and after the text you want to format. For example, _my text in italics_ text will appear as 
+						i my text in italics.
                         |.
 
                   .clearfix
@@ -141,25 +140,25 @@
                   = form.input :comment, as: :text, label: t('projects.project_updates.comment'), input_html: {rows: 10}
                   .bootstrap-twitter
                     .alert.alert-info
-                      p Lembrando que todo post de novidade vai diretamente para o email de seus apoiadores.
-                      | Por isso, revise bem seu texto antes de enviá-lo.
+                      p Recalling that every post of novelty goes directly to the email of his supporters.
+                      | So well revise his text before sending it.
                   .tips
-                    h3 Dicas de Formatação
+                    h3 Formatting Tips 
                     = image_tag "catarse/icon_media.png"
-                    p Se você colar a url de uma imagem ou de um vídeo do vimeo ou do youtube, eles irão aparecer na descrição da ideia. experimente!
+                    p If you paste the url of an image or a video from youtube or vimeo, they will appear in the description of the idea. try!
                     = image_tag "catarse/icon_url.png"
-                    p Ao colar uma url qualquer, ela virará um link. Por exemplo, http://meulink.com virará <a href="http://www.meulink.com.br">http://www.meulink.com.br</a>
+                    p When you paste a url any, it will become a link. For example,  http://meulink.com will turn <a href="http://www.meulink.com.br">http://www.meulink.com.br</a>
                     = image_tag "catarse/icon_linktext.png"
-                    p Se você quiser colocar um texto no link, basta usar o seguinte formato: "texto que você quer":http://sua.url. Por exemplo, 'meu link':http://meulink.com virará <a href="http://www.meulink.com.br">meu link</a>.
+                    p If you want to put a link in the text, please use the following format: "text you want": http://sua.url. For example, 'my link': http://meulink.com will turn <a href="http://www.meulink.com.br">my link</a>.
                     = image_tag "catarse/icon_bold.png"
                     p
-                      |Você pode usar negrito adicionando dois asteriscos (**) antes e depois do texto que você quer formatar. Por exemplo, **meu texto em negrito** irá aparecer como
-                      strong meu texto em negrito
+                      |You can use bold by adding two asterisks (**) before and after the text you want to format. For example, ** my text in bold** bold text will appear as 
+					  strong my text in bold.
                       |.
                     = image_tag "catarse/icon_italic.png"
                     p
-                      |Você pode usar itálico adicionando um underline (_) antes e depois do texto que você quer formatar. Por exemplo, _meu texto em itálico_ irá aparecer como
-                      i meu texto em itálico
+                      |You can use italic adding an underscore (_) before and after the text you want to format. For example, _my text in italics_ text will appear as 
+					  i my text in italics.
                       |.
                 = form.actions do
                   .bootstrap-twitter
