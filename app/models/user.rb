@@ -1,11 +1,23 @@
 # coding: utf-8
+
+# uid and provider are deprecated we need to use this data from authorizations ALWAYS!
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :omniauthable
   begin
-    sync_with_mailchimp
+    # NOTE: Sync normal users on mailchimp
+    sync_with_mailchimp subscribe_data: ->(user) {
+                          { EMAIL: user.email, FNAME: user.name,
+                          CITY: user.address_city, STATE: user.address_state }
+                        },
+                        list_id: Configuration[:mailchimp_list_id],
+                        subscribe_when: ->(user) { user.newsletter_changed? && user.newsletter },
+                        unsubscribe_when: ->(user) { user.newsletter_changed? && !user.newsletter },
+                        unsubscribe_email: ->(user) { user.email }
+
   rescue Exception => e
     Airbrake.notify({ :error_class => "MailChimp Error", :error_message => "MailChimp Error: #{e.inspect}", :parameters => params}) rescue nil
     Rails.logger.info "-----> #{e.inspect}"
@@ -49,11 +61,9 @@ class User < ActiveRecord::Base
 
   mount_uploader :uploaded_image, LogoUploader
 
-# validates_uniqueness_of :uid, :scope => :provider
-  validates_uniqueness_of :email, :case_sensitive => false
   validates_length_of :bio, :maximum => 140
-  validates :email, :email => true, :allow_nil => false, :allow_blank => false
-# validates :name, :presence => true, :if => :is_devise?
+  validates :email, email: true, uniqueness: true, allow_nil: false, allow_blank: false
+  #validates :name, :presence => true, :if => :is_devise?
 
   validates_presence_of     :email, :if => :is_devise?
   validates_uniqueness_of   :email, :scope => :provider, :if => :is_devise?
@@ -122,14 +132,7 @@ class User < ActiveRecord::Base
       user.nickname = auth["info"]["nickname"]
       user.bio = (auth["info"]["description"][0..139] rescue nil)
       user.locale = I18n.locale.to_s
-
-      if auth["provider"] == "twitter"
-        user.image_url = "https://api.twitter.com/1/users/profile_image?screen_name=#{auth['info']['nickname']}&size=original"
-      end
-
-      if auth["provider"] == "facebook"
-        user.image_url = "https://graph.facebook.com/#{auth['uid']}/picture?type=large"
-      end
+      user.image_url = "https://graph.facebook.com/#{auth['uid']}/picture?type=large" if auth["provider"] == "facebook"
     end
     provider = OauthProvider.where(name: auth['provider']).first
     u.authorizations.create! uid: auth['uid'], oauth_provider_id: provider.id if provider
@@ -140,7 +143,7 @@ class User < ActiveRecord::Base
     # It returns the project that have the biggest amount of backers
     # that contributed to the last project the user contributed that has common backers.
     backs.includes(:project).confirmed.order('confirmed_at DESC').each do |back|
-      project = ActiveRecord::Base.connection.execute("SELECT count(*), project_id FROM backers b JOIN projects p ON b.project_id = p.id WHERE p.expires_at > current_timestamp AND p.id NOT IN (SELECT project_id FROM backers WHERE confirmed AND user_id = #{id}) AND b.user_id in (SELECT user_id FROM backers WHERE confirmed AND project_id = #{back.project.id.to_i}) GROUP BY 2 ORDER BY 1 DESC LIMIT 1")
+      project = ActiveRecord::Base.connection.execute("SELECT count(*), project_id FROM backers b JOIN projects p ON b.project_id = p.id WHERE p.expires_at > current_timestamp AND p.id NOT IN (SELECT project_id FROM backers WHERE confirmed AND user_id = #{id}) AND b.user_id in (SELECT user_id FROM backers WHERE confirmed AND project_id = #{back.project.id.to_i}) AND p.state = 'online' GROUP BY 2 ORDER BY 1 DESC LIMIT 1")
       return Project.find(project[0]["project_id"]) unless project.count == 0
     end
     nil
@@ -227,6 +230,6 @@ class User < ActiveRecord::Base
 
   protected
   def password_required?
-    provider == 'devise' && (!persisted? || !password.nil? || !password_confirmation.nil?)
+    is_devise? && (!persisted? || !password.nil? || !password_confirmation.nil?)
   end
 end
